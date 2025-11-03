@@ -1,9 +1,20 @@
+<<<<<<< HEAD
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
 ### Eclipse ###
+=======
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+>>>>>>> 45f688abfdd72879d78271f7d217266b62e51d1e
 .apt_generated
 .classpath
 .factorypath
@@ -11,9 +22,19 @@ out/
 .settings
 .springBeans
 .sts4-cache
+<<<<<<< HEAD
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+=======
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+>>>>>>> 45f688abfdd72879d78271f7d217266b62e51d1e
 
 ### NetBeans ###
 /nbproject/private/
@@ -26,4 +47,8 @@ bin/
 .vscode/
 
 ### Mac OS ###
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+>>>>>>> 45f688abfdd72879d78271f7d217266b62e51d1e
