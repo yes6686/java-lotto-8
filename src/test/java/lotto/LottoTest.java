@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +22,55 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호가 1보다 작으면 예외가 발생한다")
+    void 로또_번호가_1보다_작으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
+    @DisplayName("로또 번호가 45보다 크면 예외가 발생한다")
+    void 로또_번호가_45보다_크면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
+    @DisplayName("로또 번호가 6개 미만이면 예외가 발생한다")
+    void 로또_번호가_6개_미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 일치하는 개수를 반환한다")
+    void 당첨_번호와_일치하는_개수를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
+
+        int matchCount = lotto.countMatch(winningNumbers);
+
+        assertThat(matchCount).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("특정 번호를 포함하는지 확인한다")
+    void 특정_번호를_포함하는지_확인한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.contains(1)).isTrue();
+        assertThat(lotto.contains(7)).isFalse();
+    }
+
+    @Test
+    @DisplayName("로또 번호를 정상적으로 생성한다")
+    void 로또_번호를_정상적으로_생성한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.getNumbers()).hasSize(6);
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }
